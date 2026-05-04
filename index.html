@@ -36,6 +36,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-light);
@@ -234,6 +238,22 @@
             height: 600px;
             background: var(--accent);
             animation-delay: 2s;
+        }
+
+        @media (max-width: 768px) {
+            .blob-1,
+            .blob-2 {
+                width: 420px;
+                height: 420px;
+            }
+
+            .blob-1 {
+                left: -35%;
+            }
+
+            .blob-2 {
+                right: -35%;
+            }
         }
 
         @keyframes float {
@@ -760,6 +780,21 @@
 
             .navbar-brand {
                 font-size: 1.4rem;
+            }
+
+            .hero-section {
+                overflow-x: hidden;
+            }
+
+            .hero-section .container {
+                max-width: 100%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .blob-1,
+            .blob-2 {
+                display: none;
             }
 
             .hero-section h1 {

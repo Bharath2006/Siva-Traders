@@ -140,6 +140,17 @@
             box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
         }
 
+        /* Modern Card Hover Effect */
+        .modern-card {
+            transition: all 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .modern-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
         /* Navbar - Glassmorphism */
         .navbar {
             background: var(--glass-bg);
@@ -605,6 +616,170 @@
             transform: translateY(-5px);
             color: white;
         }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .navbar-brand {
+                font-size: 1.65rem;
+            }
+
+            .hero-section {
+                padding: 120px 0 70px;
+            }
+
+            .hero-section h1 {
+                font-size: clamp(2.75rem, 5vw, 3.75rem);
+            }
+
+            .hero-section .lead {
+                font-size: 1rem;
+            }
+
+            .price-badge,
+            .service-card,
+            .portfolio-item,
+            .form-card,
+            .contact-card,
+            .stats-box {
+                padding: 28px;
+            }
+
+            .stats-box {
+                text-align: left;
+            }
+
+            .stat-item h3 {
+                font-size: 2.4rem;
+            }
+
+            .section-header p {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .order-section::before {
+                width: 520px;
+                height: 520px;
+                top: -60%;
+                right: -30%;
+            }
+
+            .floating-wa {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+
+            .scroll-top {
+                bottom: 20px;
+                left: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0 50px;
+            }
+
+            .hero-section h1 {
+                font-size: clamp(2.4rem, 7vw, 3rem);
+            }
+
+            .hero-section .lead,
+            .section-header p,
+            .contact-card p,
+            .footer-brand,
+            .social-link {
+                font-size: 0.95rem;
+            }
+
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.75rem;
+            }
+
+            .service-card,
+            .portfolio-item,
+            .form-card,
+            .contact-card {
+                padding: 24px;
+            }
+
+            .order-section {
+                padding: 70px 0;
+            }
+
+            .order-section .form-card {
+                margin-top: 1.5rem;
+            }
+
+            .contact-card .btn,
+            .btn-primary-custom,
+            .btn-outline-custom {
+                width: 100%;
+            }
+
+            .navbar .navbar-collapse {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(14px);
+                margin-top: 10px;
+                border-radius: 18px;
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 12px 0;
+            }
+
+            .navbar-brand {
+                font-size: 1.4rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2.3rem;
+                line-height: 1.05;
+            }
+
+            .hero-section .lead {
+                font-size: 0.95rem;
+            }
+
+            .price-badge {
+                font-size: 0.9rem;
+                padding: 10px 18px;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.78rem;
+                letter-spacing: 1.5px;
+            }
+
+            .contact-card {
+                padding: 20px;
+            }
+
+            .footer-brand {
+                font-size: 1.4rem;
+            }
+
+            .social-link {
+                width: 36px;
+                height: 36px;
+                margin-right: 8px;
+            }
+        }
     </style>
 </head>
 
@@ -641,6 +816,9 @@
                     <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
                         <a class="btn btn-primary-custom px-4 py-2 w-100" href="#order">Order Now</a>
                     </li>
+                    <li class="nav-item ms-lg-2 mt-3 mt-lg-0">
+                        <button class="btn btn-outline-custom px-3 py-2 w-100" id="langToggle">தமிழ்</button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -654,25 +832,25 @@
         <div class="container hero-content">
             <div class="row align-items-center g-5">
                 <div class="col-lg-7" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="price-badge">
+                    <div class="price-badge" id="priceBadge">
                         <i class="fas fa-bolt text-warning me-2"></i> Tailored for Garment Manufacturing
                     </div>
-                    <h1 class="display-3 fw-bold mb-4 leading-tight">
+                    <h1 class="display-3 fw-bold mb-4 leading-tight" id="heroTitle">
                         Premium Garment <br>
                         <span class="gradient-text">Trims & Tape Winding</span>
                     </h1>
-                    <p class="lead mb-5 text-muted fs-5">
+                    <p class="lead mb-5 text-muted fs-5" id="heroDesc">
                         Specializing in precision Tape Winding, high-speed twill tape processing, and professional
                         garment
                         fusing. With a 30-year legacy of excellence, we provide industry-leading finishing solutions
                         tailored to streamline your apparel production floor.
                     </p>
                     <div class="d-flex flex-column flex-sm-row gap-3">
-                        <a href="#order"
+                        <a href="#order" id="orderBtn"
                             class="btn btn-primary-custom d-flex align-items-center justify-content-center">
                             <i class="fas fa-rocket me-2"></i> Place Online Order
                         </a>
-                        <a href="tel:9080121722"
+                        <a href="tel:7200866840" id="callBtn"
                             class="btn btn-outline-custom d-flex align-items-center justify-content-center">
                             <i class="fas fa-phone-volume me-2"></i> Call Experts
                         </a>
@@ -710,6 +888,45 @@
                             <i class="fas fa-tshirt fs-1 text-secondary mb-3"></i>
                             <h3>Premium</h3>
                             <p class="text-muted fw-semibold mb-0">Garment Trims & Fusing Support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section id="summary" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 id="summaryTitle" class="display-5 fw-bold">Why Choose Siva Traders?</h2>
+                <p id="summaryDesc" class="text-muted fs-5">Your trusted partner for premium garment finishing solutions</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card h-100 border-0 shadow-sm modern-card">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-cogs fa-3x text-primary mb-3"></i>
+                            <h5 id="point1Title" class="card-title fw-bold">Precision Engineering</h5>
+                            <p id="point1Desc" class="card-text text-muted">State-of-the-art machinery for flawless tape winding and fusing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow-sm modern-card">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-clock fa-3x text-success mb-3"></i>
+                            <h5 id="point2Title" class="card-title fw-bold">Quick Turnaround</h5>
+                            <p id="point2Desc" class="card-text text-muted">Minimal processing time with maximum efficiency</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card h-100 border-0 shadow-sm modern-card">
+                        <div class="card-body text-center p-4">
+                            <i class="fas fa-handshake fa-3x text-warning mb-3"></i>
+                            <h5 id="point3Title" class="card-title fw-bold">Trusted Partnership</h5>
+                            <p id="point3Desc" class="card-text text-muted">30+ years serving the garment industry with excellence</p>
                         </div>
                     </div>
                 </div>
@@ -986,9 +1203,9 @@
                             <i class="fas fa-phone-alt fa-3x" style="color: var(--secondary);"></i>
                         </div>
                         <h4 class="fw-bold mb-3">Voice Support</h4>
-                        <p class="fs-4 fw-bold text-dark mb-1">9080121722</p>
-                        <p class="fs-4 fw-bold text-dark mb-4">7200866840</p>
-                        <a href="tel:9080121722" class="btn btn-outline-custom w-100 mt-auto"><i
+                        <p class="fs-4 fw-bold text-dark mb-1">7200866840</p>
+                        <p class="fs-4 fw-bold text-dark mb-4">9080121722</p>
+                        <a href="tel:7200866840" class="btn btn-outline-custom w-100 mt-auto"><i
                                 class="fas fa-phone me-2"></i>Call Now</a>
                     </div>
                 </div>
@@ -1000,9 +1217,9 @@
                             <i class="fab fa-whatsapp fa-3x" style="color:#25D366;"></i>
                         </div>
                         <h4 class="fw-bold mb-3">WhatsApp Business</h4>
-                        <p class="fs-4 fw-bold text-dark mb-1">9080121722</p>
-                        <p class="fs-4 fw-bold text-dark mb-4">7200866840</p>
-                        <a href="https://wa.me/919080121722?text=Hi%20Siva%20Traders%2C%20I%20need%20info%20about%20winding%20and%20fusing%20services!"
+                        <p class="fs-4 fw-bold text-dark mb-1">7200866840</p>
+                        <p class="fs-4 fw-bold text-dark mb-4">9080121722</p>
+                        <a href="https://wa.me/917200866840?text=Hi%20Siva%20Traders%2C%20I%20need%20info%20about%20winding%20and%20fusing%20services!"
                             class="btn w-100 mt-auto text-white fw-bold py-2 rounded-pill" style="background: #25D366;"
                             target="_blank">
                             <i class="fab fa-whatsapp me-2"></i>Chat Online
@@ -1021,7 +1238,7 @@
                                 <p class="mb-0 fw-bold">Siva Traders</p>
                                 <p class="text-muted mb-0">1/71-3, Thirumurugan Nagar, T.Andipalayam, Merkupathi Post,
                                     Tirupur - 638 103</p>
-                                <a href="https://www.google.com/maps/dir/?api=1&destination=11.121544,77.387877"
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=11.250166,77.338281"
                                     target="_blank" class="btn btn-sm btn-outline-custom py-1 px-3 mt-2">
                                     <i class="fas fa-directions me-1"></i> Get Directions
                                 </a>
@@ -1050,7 +1267,7 @@
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="contact-card h-100 p-0 overflow-hidden" style="min-height: 350px;">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.887848651817!2d77.387877!3d11.121544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba9065655555555%3A0x0!2zMTHCsDA3JzE3LjUiTiA3N8KwMjMnMTYuNCJF!5e0!3m2!1sen!2sin!4v1714285000000!5m2!1sen!2sin"
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1004.5160592071087!2d77.3384325195313!3d11.250701770575805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDE1JzAwLjYiTiA3N8KwMjAnMTcuOCJF!5e0!3m2!1sen!2sin!4v1777892002031!5m2!1sen!2sin"
                             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -1229,6 +1446,61 @@
                 window.location.href = mailtoUrl;
             });
         }
+
+        // Language Toggle
+        let currentLang = 'en';
+        const translations = {
+            en: {
+                heroTitle: 'Premium Garment <br><span class="gradient-text">Trims & Tape Winding</span>',
+                heroDesc: 'Specializing in precision Tape Winding, high-speed twill tape processing, and professional garment fusing. With a 30-year legacy of excellence, we provide industry-leading finishing solutions tailored to streamline your apparel production floor.',
+                priceBadge: 'Tailored for Garment Manufacturing',
+                orderBtn: '<i class="fas fa-rocket me-2"></i> Place Online Order',
+                callBtn: '<i class="fas fa-phone-volume me-2"></i> Call Experts',
+                summaryTitle: 'Why Choose Siva Traders?',
+                summaryDesc: 'Your trusted partner for premium garment finishing solutions',
+                point1Title: 'Precision Engineering',
+                point1Desc: 'State-of-the-art machinery for flawless tape winding and fusing',
+                point2Title: 'Quick Turnaround',
+                point2Desc: 'Minimal processing time with maximum efficiency',
+                point3Title: 'Trusted Partnership',
+                point3Desc: '30+ years serving the garment industry with excellence'
+            },
+            tamil: {
+                heroTitle: 'பிரீமியம் ஆடை <br><span class="gradient-text">டிரிம்ஸ் & டேப் வைண்டிங்</span>',
+                heroDesc: 'செம்மையான டேப் வைண்டிங், அதிவிரைவு ட்வில் டேப் செயலாக்கம் மற்றும் தொழில்முறை ஆடை ஃபியூசிங் ஆகியவற்றில் நிபுணத்துவம் பெற்றது. 30 ஆண்டுகள் மிகச்சிறந்த சேவையின் மரபுடன், உங்கள் ஆடை உற்பத்தி தளத்தை ஒழுங்குபடுத்துவதற்காக வடிவமைக்கப்பட்ட தொழில்துறை முன்னணி முடித்தல் தீர்வுகளை வழங்குகிறோம்.',
+                priceBadge: 'ஆடை உற்பத்திக்கு வடிவமைக்கப்பட்டது',
+                orderBtn: '<i class="fas fa-rocket me-2"></i> ஆன்லைன் ஆர்டர் செய்ய',
+                callBtn: '<i class="fas fa-phone-volume me-2"></i> நிபுணர்களை அழைக்க',
+                summaryTitle: 'ஏன் சிவா டிரேடர்ஸ் தேர்வு செய்ய?',
+                summaryDesc: 'பிரீமியம் ஆடை முடித்தல் தீர்வுகளுக்கு உங்கள் நம்பகமான துணை',
+                point1Title: 'செம்மையான பொறியியல்',
+                point1Desc: 'குறைபாடில்லாத டேப் வைண்டிங் மற்றும் ஃபியூசிங்கிற்கான மிகச்சமீபத்திய இயந்திரங்கள்',
+                point2Title: 'விரைவான முடிவு',
+                point2Desc: 'குறைந்த செயலாக்க நேரம் அதிக செயல்திறனுடன்',
+                point3Title: 'நம்பகமான கூட்டாண்மை',
+                point3Desc: '30+ ஆண்டுகள் ஆடை தொழிலுக்கு சிறப்பாக சேவை செய்தல்'
+            }
+        };
+
+        function switchLanguage() {
+            currentLang = currentLang === 'en' ? 'tamil' : 'en';
+            document.getElementById('heroTitle').innerHTML = translations[currentLang].heroTitle;
+            document.getElementById('heroDesc').innerHTML = translations[currentLang].heroDesc;
+            document.getElementById('priceBadge').innerHTML = '<i class="fas fa-bolt text-warning me-2"></i> ' + translations[currentLang].priceBadge;
+            document.getElementById('orderBtn').innerHTML = translations[currentLang].orderBtn;
+            document.getElementById('callBtn').innerHTML = translations[currentLang].callBtn;
+            document.getElementById('summaryTitle').textContent = translations[currentLang].summaryTitle;
+            document.getElementById('summaryDesc').textContent = translations[currentLang].summaryDesc;
+            document.getElementById('point1Title').textContent = translations[currentLang].point1Title;
+            document.getElementById('point1Desc').textContent = translations[currentLang].point1Desc;
+            document.getElementById('point2Title').textContent = translations[currentLang].point2Title;
+            document.getElementById('point2Desc').textContent = translations[currentLang].point2Desc;
+            document.getElementById('point3Title').textContent = translations[currentLang].point3Title;
+            document.getElementById('point3Desc').textContent = translations[currentLang].point3Desc;
+            document.getElementById('langToggle').textContent = currentLang === 'en' ? 'தமிழ்' : 'EN';
+        }
+
+        document.getElementById('langToggle').addEventListener('click', switchLanguage);
     </script>
 </body>
 
